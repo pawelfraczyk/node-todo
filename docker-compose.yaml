@@ -1,15 +1,29 @@
-version: "2"
+version: "3"
 services: 
   todo: 
     container_name: todo
-    restart: always
+    restart: unless-stopped
     build: .
+    env_file: .env
+    environment:
+      - MONGO_USER=$MONGO_USER
+      - MONGO_PASS=$MONGO_PASS
+      - MONGO_HOST=mongo
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$MONGO_DB
     ports:
       - "8080:8080"
     links:
       - mongo
+    command: ./wait-for.sh mongo:27017 -- node server.js
+
   mongo:
     container_name: mongo
     image: mongo
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASS
     ports:
       - "27017:27017"
