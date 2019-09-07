@@ -1,0 +1,4 @@
+# Ignores git files
+.git
+# Ignores all locally installed packages
+node_modules/
