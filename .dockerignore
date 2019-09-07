@@ -2,3 +2,6 @@
 .git
 # Ignores all locally installed packages
 node_modules/
+
+# Ignoers .env inside the docker image
+.env
