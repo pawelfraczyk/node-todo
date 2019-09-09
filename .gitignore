@@ -15,5 +15,6 @@ npm-debug.log
 node_modules
 package-lock.json
 
-# Commented .env file for task purpose
+# Commented .env & secret.yaml files for task purpose
 # .env
+# secret.yaml
